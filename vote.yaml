@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: vote
-        image: simplonasa/azure_voting_app:TAG
+        image: celiaoued/vote-app:TAG
         ports:
         - containerPort: 80
         resources:
