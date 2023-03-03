@@ -7,7 +7,7 @@ metadata:
 spec:
   rules:
   - host: "vote.simplon-celia.space"
-  http:
+    http:
       paths:
       - pathType: Prefix
         path: /
