@@ -9,9 +9,16 @@ spec:
   - http:
       paths:
       - pathType: Prefix
-        path: /
+        path: /production
         backend:
           service:
             name: votecluster
+            port:
+              number: 80
+      - pathType: Prefix
+        path: /canary
+        backend:
+          service:
+            name: votecanarycluster
             port:
               number: 80
