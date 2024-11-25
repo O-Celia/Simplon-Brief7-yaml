@@ -23,51 +23,51 @@ Voici une description des fichiers YAML inclus dans ce projet et leur rôle :
     Description : Définit une classe de stockage pour provisionner dynamiquement des volumes persistants sur Azure. <br/>
     Provisioner : kubernetes.io/azure-disk <br/>
     Options supplémentaires : <br/>
-        Expansion de volume activée. <br/>
-        Type de stockage : Standard_LRS.
+        - Expansion de volume activée.
+        - Type de stockage : Standard_LRS.
 
 4. vote.yaml
 
     Description : Déploie l'application de vote en tant que déploiement Kubernetes. <br/>
     Détails : <br/>
-        Réplique : 1 <br/>
-        Conteneur : celiaoued/vote-app:TAG (remplacez TAG par la version appropriée). <br/>
-        Variables d'environnement : <br/>
-            REDIS : Adresse du service Redis. <br/>
-            STRESS_SECS : Intervalle de stress. <br/>
-            REDIS_PWD : Mot de passe pour Redis (géré via un secret Kubernetes).
+        - Réplique : 1
+        - Conteneur : celiaoued/vote-app:TAG (remplacez TAG par la version appropriée).
+        - Variables d'environnement :
+            - REDIS : Adresse du service Redis.
+            - STRESS_SECS : Intervalle de stress.
+            - REDIS_PWD : Mot de passe pour Redis (géré via un secret Kubernetes).
 
 5. autoscaler.yaml
 
     Description : Implémente un autoscaler horizontal pour le déploiement de l'application de vote. <br/>
-    Détails : <br/>
-        Répliques minimum : 1 <br/>
-        Répliques maximum : 8 <br/>
-        Cible d'utilisation CPU : 70 %.
+    Détails :
+        - Répliques minimum : 1
+        - Répliques maximum : 8
+        - Cible d'utilisation CPU : 70 %.
 
 6. ingress.yaml
 
     Description : Configure un Ingress pour l'application de vote, en utilisant Azure Application Gateway. <br/>
-    Détails : <br/>
-        Point d'entrée : / <br/>
-        Redirige vers le service votecluster via le port 80.
+    Détails :
+        - Point d'entrée : /
+        - Redirige vers le service votecluster via le port 80.
 
 7. pvc.yaml
 
     Description : Définit une revendication de volume persistant (PVC) pour l'application Redis. <br/>
-    Détails : <br/>
-        Mode d'accès : ReadWriteOnce <br/>
-        Taille demandée : 1Gi <br/>
-        Classe de stockage : storageclass.
+    Détails :
+        - Mode d'accès : ReadWriteOnce
+        - Taille demandée : 1Gi
+        - Classe de stockage : storageclass.
 
 8. redis.yaml
 
     Description : Déploie un serveur Redis en tant que déploiement Kubernetes. <br/>
-    Détails : <br/>
-        Réplique : 1 <br/>
-        Conteneur : redis:latest <br/>
-        Stockage persistant : Monté via un PVC. <br/>
-        Sécurité : Mot de passe Redis injecté via un secret Kubernetes.
+    Détails :
+        - Réplique : 1
+        - Conteneur : redis:latest
+        - Stockage persistant : Monté via un PVC.
+        - Sécurité : Mot de passe Redis injecté via un secret Kubernetes.
 
 9. secretRedis.yaml
 
