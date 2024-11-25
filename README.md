@@ -6,19 +6,19 @@ Ce projet déploie une application de vote sur un cluster Kubernetes. Il inclut 
 
 Voici une description des fichiers YAML inclus dans ce projet et leur rôle :
 
-1. serviceRedis.yaml
+### 1. serviceRedis.yaml
 
 Description : Définit un service Kubernetes pour exposer le déploiement Redis sur le cluster. <br/>
 Type de service : ClusterIP <br/>
 Port exposé : 6379
 
-2. serviceVote.yaml
+### 2. serviceVote.yaml
 
 Description : Définit un service Kubernetes pour l'application de vote, qui communique via le port 80. <br/>
 Type de service : ClusterIP <br/>
 Port exposé : 80
 
-3. storageClass.yaml
+### 3. storageClass.yaml
 
 Description : Définit une classe de stockage pour provisionner dynamiquement des volumes persistants sur Azure. <br/>
 Provisioner : kubernetes.io/azure-disk <br/>
@@ -26,7 +26,7 @@ Options supplémentaires :
 - Expansion de volume activée.
 - Type de stockage : Standard_LRS.
 
-4. vote.yaml
+### 4. vote.yaml
 
 Description : Déploie l'application de vote en tant que déploiement Kubernetes. <br/>
 Détails :
@@ -37,7 +37,7 @@ Détails :
     - STRESS_SECS : Intervalle de stress. <br/>
     - REDIS_PWD : Mot de passe pour Redis (géré via un secret Kubernetes).
 
-5. autoscaler.yaml
+### 5. autoscaler.yaml
 
 Description : Implémente un autoscaler horizontal pour le déploiement de l'application de vote. <br/>
 Détails :
@@ -45,14 +45,14 @@ Détails :
 - Répliques maximum : 8
 - Cible d'utilisation CPU : 70 %.
 
-6. ingress.yaml
+### 6. ingress.yaml
 
 Description : Configure un Ingress pour l'application de vote, en utilisant Azure Application Gateway. <br/>
 Détails :
 - Point d'entrée : /
 - Redirige vers le service votecluster via le port 80.
 
-7. pvc.yaml
+### 7. pvc.yaml
 
 Description : Définit une revendication de volume persistant (PVC) pour l'application Redis. <br/>
 Détails :
@@ -60,7 +60,7 @@ Détails :
 - Taille demandée : 1Gi <br/>
 - Classe de stockage : storageclass.
 
-8. redis.yaml
+### 8. redis.yaml
 
 Description : Déploie un serveur Redis en tant que déploiement Kubernetes. <br/>
 Détails :
@@ -69,7 +69,7 @@ Détails :
 - Stockage persistant : Monté via un PVC. <br/>
 - Sécurité : Mot de passe Redis injecté via un secret Kubernetes.
 
-9. secretRedis.yaml
+### 9. secretRedis.yaml
 
 Description : Définit un secret Kubernetes pour stocker le mot de passe Redis. <br/>
 Important : Ce fichier contient des informations sensibles. Ne le partagez pas publiquement.
